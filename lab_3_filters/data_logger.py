@@ -73,9 +73,11 @@ class DataLogger():
 if __name__ == "__main__":
     port_name:str = "COM4"
     baud_rate_val:int = 57600
+    file_name:str = "filter_data.csv"
     logger = DataLogger(
         arduino_port=port_name,
-        baud_rate=baud_rate_val
+        baud_rate=baud_rate_val,
+        saved_data_file_name=file_name
     )
     logger.read_data()
     
