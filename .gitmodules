@@ -1,0 +1,3 @@
+[submodule "lab_3_filters/MPU-6050-9250-I2C-CompFilter"]
+	path = lab_3_filters/MPU-6050-9250-I2C-CompFilter
+	url = https://github.com/jn89b/MPU-6050-9250-I2C-CompFilter
