@@ -3,6 +3,16 @@ import time
 import pandas as pd
 
 class DataLogger():
+    """
+    Used to read serial data from Arduino and save it to a CSV file.
+    
+    
+    - YOU MUST CHANGE THE DATA_DICT KEYS TO MATCH THE DATA BEING SENT FROM ARDUINO.
+    - Update the keys in the data_dict to match the data being sent from Arduino.
+    - In the read_data method, update the number of keys to match the number of data values being sent from Arduino.
+    
+    
+    """
     def __init__(self,
                  arduino_port:str="COM4",
                  baud_rate:int=9600,
@@ -34,6 +44,7 @@ class DataLogger():
                     arduino_data = self.ser.readline().decode('utf-8', errors='ignore').strip()
                     data_values = arduino_data.split(',')
                     
+                    ## UPDATE AND ADD KEYS TO MATCH THE DATA BEING SENT FROM ARDUINO
                     if len(data_values) == num_keys + 1:
                         current_time = float(data_values[0])
                         kf_roll = float(data_values[1])
