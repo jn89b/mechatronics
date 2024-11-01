@@ -71,8 +71,8 @@ class DataLogger():
         print(f"Data saved to {file_name}")
     
 if __name__ == "__main__":
-    port_name:str = "COM5"
-    baud_rate_val:int = 115200
+    port_name:str = "COM6"
+    baud_rate_val:int = 9600    
     file_name:str = "filter_data.csv"
     logger = DataLogger(
         arduino_port=port_name,
