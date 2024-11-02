@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 # go to a folder and get all csv
-path = 'm90'
+path = 'm180'
 files = os.listdir(path)
 files = [f for f in files if f.endswith('.csv')]
 print(files)

@@ -4,10 +4,11 @@ import pandas as pd
 import threading
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+import re
 
 # Serial settings
 SERIAL_PORT = 'COM6'  # Update this to your Arduino port
-BAUD_RATE = 9600    
+BAUD_RATE = 9600   
 serial_connection = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
 time.sleep(2)  # Allow time for the serial connection to initialize
 
@@ -25,12 +26,13 @@ def read_serial_data():
         if serial_connection.in_waiting > 0:
             # Read and decode the serial data
             line = serial_connection.readline().decode('utf-8', errors='replace').strip()
-            data = line.split(',')
-            if len(data) == 3:
+            match = re.search(r"Encoder Position \| TargetCounts: (\d+\.\d+),(\d+),(\d+)", line)
+            if match:
                 try:
-                    time_sec = float(data[0])
-                    encoder_position = int(data[1])
-                    target_count = int(data[2])
+                    # Extract the matched groups as numbers
+                    time_sec = float(match.group(1))
+                    encoder_position = int(match.group(2))
+                    target_count = int(match.group(3))
 
                     # Append data to lists within the lock
                     with data_lock:
@@ -81,7 +83,7 @@ def update_plot(frame):
             # Update line data for encoder position and target count
             encoder_line.set_data(time_data, encoder_position_data)
             target_line.set_data(time_data, target_count_data)
-            # Debugging print statements
+            
             # Update x-axis to show the last 10 seconds of data
             max_time = time_data[-1]
             min_time = max(0, max_time - 10)  # Show the last 10 seconds
