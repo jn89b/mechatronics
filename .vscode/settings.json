@@ -1,5 +1,12 @@
 {
     "files.associations": {
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "format": "cpp",
+        "forward_list": "cpp",
+        "initializer_list": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
     }
 }

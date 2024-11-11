@@ -7,7 +7,7 @@ from matplotlib.animation import FuncAnimation
 
 # Serial settings
 SERIAL_PORT = 'COM6'  # Update this to your Arduino port
-BAUD_RATE = 9600    
+BAUD_RATE = 57600
 serial_connection = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
 time.sleep(2)  # Allow time for the serial connection to initialize
 
